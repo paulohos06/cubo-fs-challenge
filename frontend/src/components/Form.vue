@@ -50,8 +50,4 @@ button {
   cursor: pointer;
   outline: none;
 }
-.row {
-  display: flex;
-  justify-content: center;
-}
 </style>

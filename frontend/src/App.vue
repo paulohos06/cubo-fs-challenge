@@ -21,4 +21,8 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.row {
+  display: flex;
+  justify-content: center;
+}
 </style>
