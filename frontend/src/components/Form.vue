@@ -1,27 +1,69 @@
 <template>
-  <form class="form-bar">
+  <form class="form-bar" @submit.prevent="submit">
     <div class="row">
       <div class="form-group">
-        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname">
-      </div> <!-- .form-group -->
+        <input
+          type="text"
+          class="form-control"
+          name="firstname"
+          placeholder="Firstname"
+          v-model="user.firstname"
+        />
+      </div>
+      <!-- .form-group -->
 
       <div class="form-group">
-        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname">
-      </div> <!-- .form-group -->
+        <input
+          type="text"
+          class="form-control"
+          name="lastname"
+          placeholder="Lastname"
+          v-model="user.lastname"
+        />
+      </div>
+      <!-- .form-group -->
 
       <div class="form-group">
-        <input type="number" class="form-control" name="participation" id="participation" placeholder="Participation">
-      </div> <!-- .form-group -->
+        <input
+          type="number"
+          class="form-control"
+          name="participation"
+          placeholder="Participation"
+          v-model="user.participation"
+        />
+      </div>
+      <!-- .form-group -->
 
       <div class="form-group">
         <button type="submit">SEND</button>
-      </div> <!-- .form-group -->
+      </div>
+      <!-- .form-group -->
     </div>
   </form>
 </template>
 
 <script>
-export default {}
+import User from "../models/user/User"
+import UserService from '../models/user/UserService'
+
+export default {
+  data() {
+    return {
+      user: User(),
+    }
+  },
+  methods: {
+    async submit() {
+      try {
+        await UserService(this.$http).add(this.user)
+        this.user = User()
+        this.$router.go()
+      } catch (err) {
+        console.log("Error:", err)
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -42,11 +84,11 @@ button {
   padding: 10px;
   width: 150px;
   margin: 20px;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   background-color: #02b8e2;
   font-weight: bold;
   font-size: 14px;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   outline: none;
 }
