@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>DATA</h1>
+    <h2>Cubo Network Challenge</h2>
     <p>{{ message }}</p>
     <div class="row">
       <div class="control-group">
@@ -11,6 +11,7 @@
               <th>Firstname</th>
               <th>Lastname</th>
               <th>Participation</th>
+              <th>Options</th>
             </tr>
           </thead>
           <tbody>
@@ -19,9 +20,11 @@
               <td>{{ user.firstname }}</td>
               <td>{{ user.lastname }}</td>
               <td>{{ user.participation }}</td>
+              <td>
+                <button class="remove" type="button" @click="remove(user)">Remove</button>
+              </td>
             </tr>
           </tbody>
-          
         </table>
       </div> <!-- .control-group -->
 
@@ -61,7 +64,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -75,9 +78,21 @@ export default {
 }
 table {
   width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 table td, table th {
   border: 1px solid #cccccc;
-  padding: 10px;
+  padding: 5px 10px;
+}
+.remove {
+  padding: 5px;
+  background-color: #C82233;
+  border: 1px solid #C82233;
+  border-radius: 10%;
+  color: #FFF;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
