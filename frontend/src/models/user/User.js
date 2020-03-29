@@ -1,4 +1,4 @@
-const user = (firstname='', lastname='', participation=0) => {
+const user = (firstname='', lastname='', participation='') => {
   return { firstname, lastname, participation }
 }
 

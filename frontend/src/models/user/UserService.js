@@ -11,17 +11,17 @@ const userService = axios => {
     }
   }
 
-  const find = async id => {
-    const user = await axios.get(`${baseUrl}/${id}`)
-    return user.data.users
-  }
-
-  const create = async user => {
-    if (!user._id) add(user)
-    else update(user)
+  const find = async user => {
+    const res = await axios.get(`${baseUrl}${user._id}`)
+    return res.data.users
   }
 
   const add = async user => {
+    if (!user._id) create(user)
+    else update(user)
+  }
+
+  const create = async user => {
     try {
       return await axios.post(baseUrl, user)
     } catch (err) {
@@ -32,7 +32,7 @@ const userService = axios => {
 
   const update = async user => {
     try {
-      return await axios.put(`${baseUrl}/${user._id}`)
+      return await axios.put(`${baseUrl}${user._id}`, user)
     } catch (err) {
       console.log('Error:', err)
       throw new Error('Unable to update this user!')
@@ -41,7 +41,7 @@ const userService = axios => {
 
   const remove = async user => {
     try {
-      return await axios.delete(`${baseUrl}/${user._id}`)
+      return await axios.delete(`${baseUrl}${user._id}`, user)
     } catch (err) {
       console.log('Error:', err)
       throw new Error('Unable to remove this user!')
@@ -51,7 +51,7 @@ const userService = axios => {
   return {
     findAll,
     find,
-    create,
+    add,
     remove
   }
 }
