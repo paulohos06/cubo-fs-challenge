@@ -1,10 +1,10 @@
 {
-  "name": "backend",
+  "name": "cubo-backend",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "lint": "npx standard --fix"
@@ -13,6 +13,7 @@
   "author": "Paulo Henrique <paulo.henrique06@hotmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@shelf/jest-mongodb": "^1.1.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -21,6 +22,13 @@
   "devDependencies": {
     "git-commit-msg-linter": "^2.4.2",
     "husky": "^4.2.3",
-    "standard": "^14.3.3"
+    "jest": "^25.2.4",
+    "standard": "^14.3.3",
+    "supertest": "^4.0.2"
+  },
+  "standard": {
+    "ignore": [
+      "/__tests__/**/*.test.js"
+    ]
   }
 }
