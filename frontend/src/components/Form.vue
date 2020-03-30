@@ -49,7 +49,7 @@ import UserService from '../models/user/UserService'
 export default {
   data() {
     return {
-      user: User(),
+      user: User()
     }
   },
   methods: {
