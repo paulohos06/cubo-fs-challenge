@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="showTable">
     <table>
       <thead class="table-head">
         <tr>
@@ -30,6 +30,12 @@ export default {
   props: {
     data: { type: Array, required: true },
     confirm: { type: Boolean, required: false }
+  },
+  computed: {
+    showTable() {
+      if (this.data.length > 0) return true
+      return false
+    }
   },
   methods: {
     remove(user) {

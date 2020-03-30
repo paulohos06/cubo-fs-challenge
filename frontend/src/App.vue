@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Form from '@/components/Form'
+import Form from '../src/components/Form'
 
 export default {
   components: { Form }

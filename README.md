@@ -1,8 +1,6 @@
 # Cubo Network Fullstack Challenge
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
 
 ## Getting Started
 
