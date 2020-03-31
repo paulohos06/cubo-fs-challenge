@@ -7,11 +7,12 @@
 These instructions will get you a copy of this project structure up and running on your local machine.
 
 1. Clone this repository
-2. Install backend dependencies
-3. Start backend server
-4. Install frontend dependencies
-5. Start frontend client
-6. Enjoy \o/
+2. Start MONGODB
+3. Install backend dependencies
+4. Start backend server
+5. Install frontend dependencies
+6. Start frontend client
+7. Enjoy \o/
 
 ```console
 git clone https://github.com/paulohos06/cubo-fs-challenge.git
