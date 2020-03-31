@@ -4,22 +4,28 @@ const init = User => {
     res.send({ success: true, users })
   }
 
-  const add = async (req, res) => {
-    try {
-      const user = new User(req.body)
-      await user.save()
-      res.send({ success: true, user })
-    } catch (err) {
-      res.status(400).send({ success: false, errors: Object.keys(err.errors) })
-    }
+  const add = (req, res) => {
+    User.total().then(async total => {
+      if (total < 100) {
+        try {
+          const user = new User(req.body)
+          await user.save()
+          res.status(201).send({ success: true, user })
+        } catch (err) {
+          res.status(400).send({ success: false, errors: Object.keys(err.errors) })
+        }
+      } else {
+        res.status(404).send({ success: false, errors: 'Cannot exists < 100% of participation!' })
+      }
+    })
   }
 
   const remove = async (req, res) => {
     try {
       await User.deleteOne({ _id: req.params.id })
-      res.send({ success: true })
+      res.status(204).send()
     } catch (err) {
-      res.status(400).send({ success: false, errors: Object.keys(err.errors) })
+      res.status(400).send({ success: false })
     }
   }
 
