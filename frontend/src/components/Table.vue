@@ -12,7 +12,7 @@
       </thead>
       <tbody class="table-body">
         <tr v-for="user in data" v-bind:key="user._id">
-          <td>1</td>
+          <td>{{ user.id }}</td>
           <td>{{ user.firstname }}</td>
           <td>{{ user.lastname }}</td>
           <td>{{ user.participation }}%</td>

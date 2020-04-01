@@ -1,13 +1,17 @@
 <template>
   <div class="container">
+    <Form @formSubmit="handleForm" />
+
     <h2>Cubo Network Challenge</h2>
+    <flash-message class="message"></flash-message>
+
     <div class="row">
       <div class="control-group">
         <Table v-bind:data="users" @btnAction="remove" :confirm="true" />
       </div> <!-- .control-group -->
 
       <div class="control-group">
-        <Chart class="user-chart" :data="data" :labels="labels" v-if="loaded" 
+        <Chart class="user-chart" :data="chartData" :labels="labels" v-if="loaded" 
           aria-label="Users percentage info of participation" role="doughnut chart" />
       </div> <!-- .control-group -->
     </div>
@@ -17,16 +21,17 @@
 
 <script>
 import UserService from '../models/user/UserService'
+import Form from '../components/Form'
 import Table from '../components/Table'
 import Chart from '../components/Chart'
 
 export default {
-  components: { Table, Chart },
+  components: { Form, Table, Chart },
   data() {
     return {
       users: [],
       labels: [],
-      data: [],
+      chartData: [],
       loaded: false
     }
   },
@@ -34,7 +39,7 @@ export default {
     try {
       this.users = await UserService(this.$http).findAll()
     } catch (err) {
-      this.notification(err.message)
+      this.message(err.message, 'error')
     }
   },
   mounted() {
@@ -46,29 +51,26 @@ export default {
         await UserService(this.$http).remove(user)
         this.users = this.users.filter(item => item != user)
         this.fillData()
-        this.notification('User removed')
+        this.message('User removed!', 'success')
       } catch (err) {
-        this.notification(err.message)
+        console(err.message)
       }
     },
-    async fillData() {
+    fillData() {
       this.loaded = false
-      try {
-        const users = await UserService(this.$http).findAll()
-        this.labels = users.map(item => item.firstname)
-        this.data = users.map(item => item.participation)
+      setTimeout(async () => {
+        this.users = await UserService(this.$http).findAll()
+        this.labels = this.users.map(item => item.firstname)
+        this.chartData = this.users.map(item => item.participation)
         this.loaded = true
-      } catch (err) {
-        console.log(err)
-      }
+      }, 100)
     },
-    notification(message) {
-      this.$toast(message, {
-        className: 'et-alert',
-        horizontalPosition: 'center',
-        verticalPosition: 'center',
-        duration: 1000 
-      })
+    handleForm() {
+      this.message('User added!', 'success')
+      this.fillData()
+    },
+    message(message, type) {
+      this.flash(message, type, { timeout: 2000 })
     }
   }
 }
@@ -83,8 +85,14 @@ export default {
   width: 500px;
   margin: 50px 100px;
 }
+.message {
+  width: 250px;
+  margin: 10px auto;
+}
 .user-chart {
   width: 350px;
-  margin-top: -50px;
+  margin: -40px auto;
+  vertical-align: middle;
+  text-align: center;
 }
 </style>

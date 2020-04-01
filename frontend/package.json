@@ -14,7 +14,7 @@
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
-    "vue-easy-toast": "^1.0.5",
+    "vue-flash-message": "^0.7.2",
     "vue-router": "^3.1.5"
   },
   "devDependencies": {

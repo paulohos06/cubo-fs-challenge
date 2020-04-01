@@ -56,8 +56,8 @@ export default {
     async submit() {
       try {
         await UserService(this.$http).add(this.user)
+        this.$emit('formSubmit')
         this.user = User()
-        this.$router.go()
       } catch (err) {
         console.log("Error:", err)
       }
@@ -91,5 +91,21 @@ button {
   color: #fff;
   cursor: pointer;
   outline: none;
+}
+@media screen and (max-width: 1148px) {
+  .form-bar {
+    height: 170px;
+  }
+  .form-group {
+    flex: 1 0 120px;
+  }
+}
+@media screen and (max-width: 645px) {
+  .form-bar {
+    height: 320px;
+  }
+  button {
+    display: inline-block;
+  }
 }
 </style>

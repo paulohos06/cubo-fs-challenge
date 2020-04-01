@@ -2,13 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios'
-import Toast from 'vue-easy-toast'
+import VueFlashMessage from 'vue-flash-message'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios.create({
   baseURL: 'http://localhost:3000'
 })
-Vue.use(Toast)
+
+// Flash Messages
+require('vue-flash-message/dist/vue-flash-message.min.css')
+Vue.use(VueFlashMessage)
 
 new Vue({
   router,

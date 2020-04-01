@@ -1,15 +1,11 @@
 <template>
   <div id="app">
-    <Form/>
     <router-view />
   </div>
 </template>
 
 <script>
-import Form from '../src/components/Form'
-
 export default {
-  components: { Form }
 }
 </script>
 
@@ -25,6 +21,7 @@ export default {
 }
 .row {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
 }
 </style>
