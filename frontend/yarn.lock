@@ -9426,11 +9426,6 @@ vue-chartjs@^3.5.0:
   resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-3.5.0.tgz#edd0c2be94c521bcbc5357c24afb9f3560855f84"
   integrity sha512-yWNhG3B6g6lvYqNInP0WaDWNZG/SNb6XnltkjR0wYC5pmLm6jvdiotj8er7Mui8qkJGfLZe6ULjrZdHWjegAUg==
 
-vue-easy-toast@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/vue-easy-toast/-/vue-easy-toast-1.0.5.tgz#c2b5064b7b0e0b69500c9f38b0c63ff1a151e0b7"
-  integrity sha512-Tx7TNn19wAbaqvreJMrYrlTwMtHMyaEoG/ISfmFQ4ABWdyB4qphU+eialiOSpGbRFg5w61cBGBkVy3lyJroOPw==
-
 vue-eslint-parser@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.0.0.tgz#a4ed2669f87179dedd06afdd8736acbb3a3864d6"
@@ -9442,6 +9437,11 @@ vue-eslint-parser@^7.0.0:
     espree "^6.1.2"
     esquery "^1.0.1"
     lodash "^4.17.15"
+
+vue-flash-message@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/vue-flash-message/-/vue-flash-message-0.7.2.tgz#0668d6fa9fc70c65fd5c6ec246a415786960c34d"
+  integrity sha512-swOK9PxlWKzt1zzAMJX4YMU2O3kS0JznbwLy8burtKK2vibYc7ODRiEdAVnxRDQ09TG4tElVeO3hwwGDxQktaw==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
