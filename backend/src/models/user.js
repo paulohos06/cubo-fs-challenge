@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const autoIncrement = require('mongoose-sequence')(mongoose)
 
 const userSchema = new mongoose.Schema({
   firstname: { type: String, required: [true, 'firstname is required.'] },
@@ -10,6 +11,8 @@ const userSchema = new mongoose.Schema({
     required: [true, 'participation is required.']
   }
 })
+
+userSchema.plugin(autoIncrement, { inc_field: 'id' })
 
 // methods
 userSchema.static('total', async function () {
