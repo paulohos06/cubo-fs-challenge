@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project was made for applying to a position as Software Engineer at Cubo Network. It was developed using JavaScript and MongoDB. It was divided in front-end (client) made with Vue Framework and back-end (server) made with NodeJS + Express. The client communicates with server through REST API in order to get users data.
+This project was made for applying to a position as Software Engineer at [Cubo Network](https://github.com/cubonetwork/fullstack-challenge). It was developed using JavaScript and MongoDB. It was divided in front-end (client) made with Vue Framework and back-end (server) made with NodeJS + Express. The client communicates with server through REST API in order to get users data.
 
 ## Getting Started
 
@@ -30,5 +30,5 @@ yarn serve
 
 ## Last Thoughts
 
-I actually used this project as a study, in building a full javascript application from the ground up. I stumbled on various errors and problems and certainly I grew up a great deal as a developer. A few things could be improved, and could've been done differently, but the main goal is to use the feedback to improve it even further.
+I actually used this project as a study, in building a full javascript application from the ground up. A few things could be improved, and could've been done differently, but the main goal is to use the feedback to improve it even further.
 Thanks for the opportunity!
