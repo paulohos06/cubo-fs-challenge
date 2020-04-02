@@ -6,7 +6,9 @@
           <th></th>
           <th>Firstname</th>
           <th>Lastname</th>
-          <th>Participation</th>
+          <th>
+            <abbr class="tip" title="Limit allowed: 100%">Participation</abbr>
+          </th>
           <th>Options</th>
         </tr>
       </thead>
@@ -92,5 +94,9 @@ table td, table th {
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
+}
+abbr {
+  border-bottom: 2px dotted #ffdc75;
+  text-decoration: none
 }
 </style>

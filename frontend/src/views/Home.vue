@@ -65,8 +65,9 @@ export default {
         this.loaded = true
       }, 100)
     },
-    handleForm() {
-      this.message('User added!', 'success')
+    handleForm(obj) {
+      if (obj.type === 'success') this.message(obj.message, 'success')
+      else this.message(obj.message, 'error')
       this.fillData()
     },
     message(message, type) {
@@ -86,7 +87,7 @@ export default {
   margin: 50px 100px;
 }
 .message {
-  width: 250px;
+  width: 400px;
   margin: 10px auto;
 }
 .user-chart {

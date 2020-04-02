@@ -56,10 +56,11 @@ export default {
     async submit() {
       try {
         await UserService(this.$http).add(this.user)
-        this.$emit('formSubmit')
+        this.$emit('formSubmit', { type: 'success', message: 'User added!' })
         this.user = User()
       } catch (err) {
-        console.log("Error:", err)
+        this.$emit('formSubmit', { type: 'error', message: err.message })
+        console.log("Error:", err.message)
       }
     }
   }
