@@ -14,13 +14,16 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(autoIncrement, { inc_field: 'id' })
 
-// methods
-userSchema.static('total', async function () {
-  const docs = await this.find({}).select('participation -_id').exec()
+userSchema.pre('save', async function (next) {
+  const user = this
+  const docs = await this.model('User').find({}).select('participation -_id')
   const total = docs
     .map(item => item.participation)
     .reduce((acc, curr) => parseInt(acc) + parseInt(curr), 0)
-  return total
+  const allowed = !((total + parseInt(user.participation) > 100))
+
+  if (allowed) next()
+  else throw new Error('Users participation will exceed the limit allowed!')
 })
 
 const User = mongoose.model('User', userSchema)

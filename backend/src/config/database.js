@@ -6,7 +6,9 @@ mongoose.Promise = global.Promise
 
 const db = mongoose.connect(mongo, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
 })
 
 module.exports = db
