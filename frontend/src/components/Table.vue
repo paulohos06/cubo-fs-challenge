@@ -7,14 +7,14 @@
           <th>Firstname</th>
           <th>Lastname</th>
           <th>
-            <abbr class="tip" title="Limit allowed: 100%">Participation</abbr>
+            <abbr class="tip" v-tooltip.top="limit">Participation</abbr>
           </th>
           <th>Options</th>
         </tr>
       </thead>
       <tbody class="table-body">
-        <tr v-for="user in data" v-bind:key="user._id">
-          <td>{{ user.id }}</td>
+        <tr v-for="(user, index) in data" v-bind:key="user._id">
+          <td>{{ userIndex(index) }}</td>
           <td>{{ user.firstname }}</td>
           <td>{{ user.lastname }}</td>
           <td>{{ user.participation }}%</td>
@@ -31,7 +31,12 @@
 export default {
   props: {
     data: { type: Array, required: true },
-    confirm: { type: Boolean, required: false }
+    confirm: { type: Boolean, required: false },
+  },
+  data() {
+    return {
+      limit: 'Limit allowed: 100%'
+    }
   },
   computed: {
     showTable() {
@@ -48,6 +53,9 @@ export default {
       } else {
         this.$emit('btnAction', user)
       }
+    },
+    userIndex(index) {
+      return index += 1
     }
   }
 }

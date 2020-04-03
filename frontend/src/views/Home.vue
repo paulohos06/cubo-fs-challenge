@@ -83,7 +83,7 @@ export default {
   width: 100%;
 }
 .control-group {
-  width: 500px;
+  width: 400px;
   margin: 50px 100px;
 }
 .message {
