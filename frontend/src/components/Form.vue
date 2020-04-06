@@ -1,45 +1,55 @@
 <template>
-  <form class="form-bar" @submit.prevent="submit">
-    <div class="row">
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          name="firstname"
-          placeholder="Firstname"
-          v-model="user.firstname"
-        />
-      </div>
-      <!-- .form-group -->
+  <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+    <form class="form-bar" @submit.prevent="handleSubmit(submit)">
+      <div class="row">
+        <div class="form-group">
+          <ValidationProvider rules="required|minmax:3,30" v-slot="{ errors }">
+            <input type="text"
+              class="form-control"
+              name="firstname"
+              placeholder="Firstname"
+              v-model="user.firstname"
+            />
+            <div class="error">{{ errors[0] }}</div>
+          </ValidationProvider>
+        </div>
+        <!-- .form-group -->
 
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          name="lastname"
-          placeholder="Lastname"
-          v-model="user.lastname"
-        />
-      </div>
-      <!-- .form-group -->
+        <div class="form-group">
+          <ValidationProvider rules="required|minmax:3,30" v-slot="{ errors }">
+            <input
+              type="text"
+              class="form-control"
+              name="lastname"
+              placeholder="Lastname"
+              v-model="user.lastname"
+            />
+            <div class="error">{{ errors[0] }}</div>
+          </ValidationProvider>
+        </div>
+        <!-- .form-group -->
 
-      <div class="form-group">
-        <input
-          type="number"
-          class="form-control"
-          name="participation"
-          placeholder="Participation"
-          v-model="user.participation"
-        />
-      </div>
-      <!-- .form-group -->
+        <div class="form-group">
+          <ValidationProvider rules="required" v-slot="{ errors }">
+            <input
+              type="number"
+              class="form-control"
+              name="participation"
+              placeholder="Participation"
+              v-model="user.participation"
+            />
+            <div class="error">{{ errors[0] }}</div>
+          </ValidationProvider>
+        </div>
+        <!-- .form-group -->
 
-      <div class="form-group">
-        <button type="submit">SEND</button>
+        <div class="form-group">
+          <button type="submit">SEND</button>
+        </div>
+        <!-- .form-group -->
       </div>
-      <!-- .form-group -->
-    </div>
-  </form>
+    </form>
+  </ValidationObserver>
 </template>
 
 <script>
@@ -58,6 +68,9 @@ export default {
         await UserService(this.$http).add(this.user)
         this.$emit('formSubmit', { type: 'success', message: 'User added!' })
         this.user = User()
+        this.$nextTick(() => {
+          this.$refs.form.reset()
+        });
       } catch (err) {
         this.$emit('formSubmit', { type: 'error', message: err.message })
         console.log("Error:", err.message)
@@ -77,7 +90,7 @@ export default {
 input {
   padding: 10px;
   width: 250px;
-  margin: 20px;
+  margin: 20px 20px 5px 20px;
   font-size: 13px;
   outline: none;
 }
@@ -92,6 +105,12 @@ button {
   color: #fff;
   cursor: pointer;
   outline: none;
+}
+.error {
+  color: #FFF;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 0 5px
 }
 @media screen and (max-width: 1148px) {
   .form-bar {

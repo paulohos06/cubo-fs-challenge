@@ -4,6 +4,9 @@ import router from './router'
 import axios from 'axios'
 import VueFlashMessage from 'vue-flash-message'
 import Tooltip from 'vue-directive-tooltip'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
+
+import validate from './utils/validate'
 
 import 'vue-flash-message/dist/vue-flash-message.min.css'
 import 'vue-directive-tooltip/dist/vueDirectiveTooltip.css'
@@ -14,6 +17,11 @@ Vue.prototype.$http = axios.create({
 })
 Vue.use(VueFlashMessage)
 Vue.use(Tooltip)
+
+// Form Validation
+Vue.component('ValidationProvider', ValidationProvider)
+Vue.component('ValidationObserver', ValidationObserver)
+validate()
 
 new Vue({
   router,

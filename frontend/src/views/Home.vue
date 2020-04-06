@@ -26,6 +26,7 @@ import Table from '../components/Table'
 import Chart from '../components/Chart'
 
 export default {
+  name: 'Home',
   components: { Form, Table, Chart },
   data() {
     return {
