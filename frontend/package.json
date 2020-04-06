@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
+    "vee-validate": "^3.2.5",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
     "vue-directive-tooltip": "^1.6.3",
