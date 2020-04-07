@@ -1,4 +1,4 @@
-const User = require('../../src/models/user')
+const { User } = require('../../src/models/user')
 
 describe('Valid Testcases', () => {
   test('should have two required string fields ', () => {
@@ -14,11 +14,6 @@ describe('Valid Testcases', () => {
     const field = User.schema.paths.participation
     expect(field.instance).toBe('Number')
     expect(field.isRequired).toBeTruthy()
-  })
-
-  test('should have a total static method', () => {
-    expect(User.schema.statics).toContainKey('total')
-    expect(User.schema.statics.total).toBeFunction()
   })
 })
 

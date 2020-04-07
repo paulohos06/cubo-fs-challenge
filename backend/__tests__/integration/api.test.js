@@ -64,8 +64,6 @@ describe('API Invalid Testcases', () => {
     const response = await request(app).post('/').send({ firstname: 'Paulo', participation: 150 })
     expect(response.status).toEqual(400)
     expect(response.body.success).toBeFalsy()
-    expect(response.body.errors).toBeArray()
-    expect(response.body.errors).toStrictEqual(['lastname', 'participation'])
   })
 
   test('DELETE /invalid-id should return status code 400', async () => {

@@ -1,5 +1,5 @@
 const init = User => {
-  const findAll = async (req, res) => {
+  const getAll = async (req, res) => {
     const users = await User.find({})
     res.send({ success: true, users })
   }
@@ -24,7 +24,7 @@ const init = User => {
   }
 
   return {
-    findAll,
+    getAll,
     add,
     remove
   }

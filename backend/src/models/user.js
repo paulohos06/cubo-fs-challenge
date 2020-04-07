@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const autoIncrement = require('mongoose-sequence')(mongoose)
+const { celebrate, Joi, Segments } = require('celebrate')
 
 const userSchema = new mongoose.Schema({
   firstname: { type: String, required: [true, 'firstname is required.'] },
@@ -28,4 +29,16 @@ userSchema.pre('save', async function (next) {
 
 const User = mongoose.model('User', userSchema)
 
-module.exports = User
+// celebrate validation
+const UserValidation = celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    firstname: Joi.string().required(),
+    lastname: Joi.string().required(),
+    participation: Joi.number().integer()
+  })
+})
+
+module.exports = {
+  User,
+  UserValidation
+}
