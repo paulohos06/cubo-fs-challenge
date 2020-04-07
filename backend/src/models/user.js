@@ -15,12 +15,22 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(autoIncrement, { inc_field: 'id' })
 
+userSchema.statics.total = function () {
+  return new Promise((resolve, reject) => {
+    const query = this.find({}).select('participation -_id')
+    query.exec((err, docs) => {
+      if (err) reject(err)
+      const total = docs
+        .map(item => item.participation)
+        .reduce((acc, curr) => parseInt(acc) + parseInt(curr), 0)
+      resolve(total)
+    })
+  })
+}
+
 userSchema.pre('save', async function (next) {
   const user = this
-  const docs = await this.model('User').find({}).select('participation -_id')
-  const total = docs
-    .map(item => item.participation)
-    .reduce((acc, curr) => parseInt(acc) + parseInt(curr), 0)
+  const total = await this.model('User').total()
   const allowed = !((total + parseInt(user.participation) > 100))
 
   if (allowed) next()

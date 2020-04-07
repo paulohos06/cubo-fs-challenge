@@ -1,7 +1,8 @@
 const init = User => {
   const getAll = async (req, res) => {
     const users = await User.find({})
-    res.send({ success: true, users })
+    const total = await User.total()
+    res.send({ success: true, total, users })
   }
 
   const add = async (req, res) => {
