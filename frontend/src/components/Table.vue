@@ -23,6 +23,12 @@
           </td>
         </tr>
       </tbody>
+      <tfoot class="table-foot">
+        <tr>
+          <th colspan="3" style="text-align: left; padding: 0 20px;">Total:</th>
+          <th colspan="2" style="text-align: right; padding: 0 20px;">{{ total }}%</th>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </template>
@@ -31,6 +37,7 @@
 export default {
   props: {
     data: { type: Array, required: true },
+    total: { type: Number, required: true, default: 0 },
     confirm: { type: Boolean, required: false },
   },
   data() {
@@ -92,6 +99,13 @@ table td, table th {
   color: #555555;
   background-color: #f5f5f5;
   cursor: pointer;
+}
+.table-foot tr{
+  height: 30px;
+  background: #36304a;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
 }
 .btn-remove {
   padding: 5px;

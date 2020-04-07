@@ -1,21 +1,16 @@
 const userService = axios => {
   const baseUrl = '/'
 
-  const findAll = async () => {
+  const getAll = async () => {
     try {
       const users = await axios.get(baseUrl)
-      return users.data.users
+      return users.data
     } catch (err) {
       console.log('Server error:', err)
-      throw new Error('Unable to get all users')
+      throw new Error('Unable to get users!')
     }
   }
-
-  const find = async user => {
-    const res = await axios.get(`${baseUrl}${user._id}`)
-    return res.data.users
-  }
-
+  
   const add = async user => {
     try {
       return await axios.post(baseUrl, user)
@@ -35,8 +30,7 @@ const userService = axios => {
   }
 
   return {
-    findAll,
-    find,
+    getAll,
     add,
     remove
   }

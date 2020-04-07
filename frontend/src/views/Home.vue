@@ -7,7 +7,7 @@
 
     <div class="row">
       <div class="control-group">
-        <Table v-bind:data="users" @btnAction="remove" :confirm="true" />
+        <Table :data="users" :total="total" @btnAction="remove" :confirm="true" />
       </div> <!-- .control-group -->
 
       <div class="control-group">
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       users: [],
+      total: 0,
       labels: [],
       chartData: [],
       loaded: false
@@ -38,7 +39,7 @@ export default {
   },
   async created() {
     try {
-      this.users = await UserService(this.$http).findAll()
+      await this.getUsers()
     } catch (err) {
       this.message(err.message, 'error')
     }
@@ -47,6 +48,11 @@ export default {
     this.fillData()
   },
   methods: {
+    async getUsers() {
+      const { total, users } = await UserService(this.$http).getAll()
+      this.users = users
+      this.total = parseInt(total)
+    },
     async remove(user) {
       try {
         await UserService(this.$http).remove(user)
@@ -60,7 +66,7 @@ export default {
     fillData() {
       this.loaded = false
       setTimeout(async () => {
-        this.users = await UserService(this.$http).findAll()
+        await this.getUsers()
         this.labels = this.users.map(item => item.firstname)
         this.chartData = this.users.map(item => item.participation)
         this.loaded = true
